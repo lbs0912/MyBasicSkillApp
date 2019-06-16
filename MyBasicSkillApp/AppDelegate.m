@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -16,7 +17,41 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    // 初始化 tabBar 控制器
+    UITabBarController *mbsTabBarController = [[UITabBarController alloc] init];
+    // 设置 UIWindow 的 rootViewController 为 UITabBarController
+    self.window.rootViewController = mbsTabBarController;
+
+    
+    
+    //创建对应的子控制器
+    UIViewController *mbsVC1 = [[UIViewController alloc] init];
+    mbsVC1.view.backgroundColor = [UIColor greenColor];
+    mbsVC1.tabBarItem.title = @"Home";
+    mbsVC1.tabBarItem.image = [[UIImage imageNamed:@"Home_normal"]
+                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    mbsVC1.tabBarItem.selectedImage = [[UIImage imageNamed:@"Home_selected"]
+                                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIViewController *mbsVC2 = [[UIViewController alloc] init];
+    mbsVC2.view.backgroundColor = [UIColor blueColor];
+    mbsVC2.tabBarItem.title = @"Category";
+    mbsVC2.tabBarItem.image = [[UIImage imageNamed:@"Category_normal"]
+                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    mbsVC2.tabBarItem.selectedImage = [[UIImage imageNamed:@"Category_selected"]
+                                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    
+    
+    // 将子控制器添加到 UITabBarController
+    mbsTabBarController.viewControllers = @[mbsVC1,mbsVC2];
+    
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

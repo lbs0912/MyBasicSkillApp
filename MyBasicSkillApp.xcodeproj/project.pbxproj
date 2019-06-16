@@ -15,6 +15,7 @@
 		63C5A9E222B601EA00091EDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5A9E122B601EA00091EDE /* main.m */; };
 		63C5A9EC22B601EB00091EDE /* MyBasicSkillAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5A9EB22B601EB00091EDE /* MyBasicSkillAppTests.m */; };
 		63C5A9F722B601EB00091EDE /* MyBasicSkillAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5A9F622B601EB00091EDE /* MyBasicSkillAppUITests.m */; };
+		63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA0B22B60AE700091EDE /* MBSTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		63C5A9F222B601EB00091EDE /* MyBasicSkillAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyBasicSkillAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C5A9F622B601EB00091EDE /* MyBasicSkillAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBasicSkillAppUITests.m; sourceTree = "<group>"; };
 		63C5A9F822B601EB00091EDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63C5AA0A22B60AE700091EDE /* MBSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSTabBarController.h; sourceTree = "<group>"; };
+		63C5AA0B22B60AE700091EDE /* MBSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		63C5A9D122B601E900091EDE /* MyBasicSkillApp */ = {
 			isa = PBXGroup;
 			children = (
+				63C5AA0522B6034C00091EDE /* Tab */,
 				63C5A9D222B601E900091EDE /* AppDelegate.h */,
 				63C5A9D322B601E900091EDE /* AppDelegate.m */,
 				63C5A9D522B601E900091EDE /* ViewController.h */,
@@ -130,6 +134,23 @@
 				63C5A9F822B601EB00091EDE /* Info.plist */,
 			);
 			path = MyBasicSkillAppUITests;
+			sourceTree = "<group>";
+		};
+		63C5AA0522B6034C00091EDE /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA0922B60A5000091EDE /* Controllers */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		63C5AA0922B60A5000091EDE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA0A22B60AE700091EDE /* MBSTabBarController.h */,
+				63C5AA0B22B60AE700091EDE /* MBSTabBarController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +285,7 @@
 			files = (
 				63C5A9D722B601E900091EDE /* ViewController.m in Sources */,
 				63C5A9E222B601EA00091EDE /* main.m in Sources */,
+				63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */,
 				63C5A9D422B601E900091EDE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
