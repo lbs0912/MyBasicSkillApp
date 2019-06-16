@@ -18,7 +18,12 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Frame Layout Demo";
-  
+    UIView *contentView = [[UIView alloc] initWithFrame:self.view.bounds];
+    contentView.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:contentView];
+
+    
+    
 }
 
 /*
