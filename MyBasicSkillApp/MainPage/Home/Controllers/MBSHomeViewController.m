@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
    
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     CGRect screen = [[UIScreen mainScreen] bounds];
     
     /// 1.添加Frame 布局按钮
@@ -53,13 +53,9 @@
 }
 
 
-
-
 - (void) onClick: (id) sender {
     FrameLayoutViewController *frameLayoutVC = [[FrameLayoutViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frameLayoutVC];
-    //展示模态窗
-//    [self presentedViewController: navigationController animated: TRUE completion: nil];
+    [self.navigationController pushViewController:frameLayoutVC animated:NO];
 }
 
 @end

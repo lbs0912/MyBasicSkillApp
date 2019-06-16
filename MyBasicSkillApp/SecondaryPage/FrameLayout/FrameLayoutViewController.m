@@ -17,9 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UILabel *labelId = [[UILabel alloc] initWithFrame:CGRectMake(80,115, 80, 21)];
-    labelId.text = @"用户ID：";
-    [self.view addSubview:labelId];
+    self.navigationItem.title = @"Frame Layout Demo";
+  
 }
 
 /*

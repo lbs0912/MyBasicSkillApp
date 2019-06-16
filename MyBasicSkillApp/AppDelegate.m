@@ -30,8 +30,15 @@
     
     
     //创建对应的子控制器
+    //子控制器-1
     MBSHomeViewController *mbsHomeVC = [[MBSHomeViewController alloc] init];  //首页
+    //创建UINavigationController，设置其rootViewController为视图控制器
+    //最后，将UINavigationController 插入到TabBarController中
+    UINavigationController * navController1 = [[UINavigationController alloc] initWithRootViewController:mbsHomeVC];
+    [mbsHomeVC.navigationItem setTitle:@"Home"];
+
     
+    //子控制器-2
     UIViewController *mbsVC1 = [[UIViewController alloc] init];
     mbsVC1.view.backgroundColor = [UIColor greenColor];
     mbsVC1.tabBarItem.title = @"Home";
@@ -39,7 +46,7 @@
                                imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     mbsVC1.tabBarItem.selectedImage = [[UIImage imageNamed:@"Home_selected"]
                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+    //子控制器-3
     UIViewController *mbsVC2 = [[UIViewController alloc] init];
     mbsVC2.view.backgroundColor = [UIColor blueColor];
     mbsVC2.tabBarItem.title = @"Category";
@@ -52,7 +59,7 @@
    
     
     // 将子控制器添加到 UITabBarController
-    mbsTabBarController.viewControllers = @[mbsHomeVC,mbsVC1,mbsVC2];
+    mbsTabBarController.viewControllers = @[navController1,mbsVC1,mbsVC2];
     
     
     [self.window makeKeyAndVisible];
