@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MBSHomeViewController.h"
 
 
 @interface AppDelegate ()
@@ -29,6 +30,8 @@
     
     
     //创建对应的子控制器
+    MBSHomeViewController *mbsHomeVC = [[MBSHomeViewController alloc] init];  //首页
+    
     UIViewController *mbsVC1 = [[UIViewController alloc] init];
     mbsVC1.view.backgroundColor = [UIColor greenColor];
     mbsVC1.tabBarItem.title = @"Home";
@@ -46,9 +49,10 @@
                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     
+   
     
     // 将子控制器添加到 UITabBarController
-    mbsTabBarController.viewControllers = @[mbsVC1,mbsVC2];
+    mbsTabBarController.viewControllers = @[mbsHomeVC,mbsVC1,mbsVC2];
     
     
     [self.window makeKeyAndVisible];

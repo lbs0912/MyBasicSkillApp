@@ -16,6 +16,8 @@
 		63C5A9EC22B601EB00091EDE /* MyBasicSkillAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5A9EB22B601EB00091EDE /* MyBasicSkillAppTests.m */; };
 		63C5A9F722B601EB00091EDE /* MyBasicSkillAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5A9F622B601EB00091EDE /* MyBasicSkillAppUITests.m */; };
 		63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA0B22B60AE700091EDE /* MBSTabBarController.m */; };
+		63C5AA1422B6207200091EDE /* MBSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA1322B6207200091EDE /* MBSHomeViewController.m */; };
+		63C5AA1922B6303300091EDE /* FrameLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA1822B6303300091EDE /* FrameLayoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		63C5A9F822B601EB00091EDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63C5AA0A22B60AE700091EDE /* MBSTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSTabBarController.h; sourceTree = "<group>"; };
 		63C5AA0B22B60AE700091EDE /* MBSTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSTabBarController.m; sourceTree = "<group>"; };
+		63C5AA1222B6207200091EDE /* MBSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSHomeViewController.h; sourceTree = "<group>"; };
+		63C5AA1322B6207200091EDE /* MBSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSHomeViewController.m; sourceTree = "<group>"; };
+		63C5AA1722B6303300091EDE /* FrameLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLayoutViewController.h; sourceTree = "<group>"; };
+		63C5AA1822B6303300091EDE /* FrameLayoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrameLayoutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,8 @@
 		63C5A9D122B601E900091EDE /* MyBasicSkillApp */ = {
 			isa = PBXGroup;
 			children = (
+				63C5AA1522B6300400091EDE /* SecondaryPage */,
+				63C5AA0D22B6202500091EDE /* MainPage */,
 				63C5AA0522B6034C00091EDE /* Tab */,
 				63C5A9D222B601E900091EDE /* AppDelegate.h */,
 				63C5A9D322B601E900091EDE /* AppDelegate.m */,
@@ -151,6 +159,64 @@
 				63C5AA0B22B60AE700091EDE /* MBSTabBarController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		63C5AA0D22B6202500091EDE /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA0E22B6203C00091EDE /* Home */,
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
+		63C5AA0E22B6203C00091EDE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA1122B6205300091EDE /* Models */,
+				63C5AA1022B6204B00091EDE /* Views */,
+				63C5AA0F22B6204200091EDE /* Controllers */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		63C5AA0F22B6204200091EDE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA1222B6207200091EDE /* MBSHomeViewController.h */,
+				63C5AA1322B6207200091EDE /* MBSHomeViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		63C5AA1022B6204B00091EDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		63C5AA1122B6205300091EDE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		63C5AA1522B6300400091EDE /* SecondaryPage */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA1622B6301500091EDE /* FrameLayout */,
+			);
+			path = SecondaryPage;
+			sourceTree = "<group>";
+		};
+		63C5AA1622B6301500091EDE /* FrameLayout */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA1722B6303300091EDE /* FrameLayoutViewController.h */,
+				63C5AA1822B6303300091EDE /* FrameLayoutViewController.m */,
+			);
+			path = FrameLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,9 +349,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C5AA1922B6303300091EDE /* FrameLayoutViewController.m in Sources */,
 				63C5A9D722B601E900091EDE /* ViewController.m in Sources */,
 				63C5A9E222B601EA00091EDE /* main.m in Sources */,
 				63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */,
+				63C5AA1422B6207200091EDE /* MBSHomeViewController.m in Sources */,
 				63C5A9D422B601E900091EDE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  FrameLayoutViewController.h
 //  MyBasicSkillApp
 //
 //  Created by Liu Baoshuai on 2019/6/16.
@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
-@property (strong, nonatomic) UIWindow *window;
+@interface FrameLayoutViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
