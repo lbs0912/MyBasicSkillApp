@@ -17,11 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-   
+    [self setUpUI];
+}
+
+
+#pragma mark - setUpUI
+- (void) setUpUI {
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect screen = [[UIScreen mainScreen] bounds];
-    
     /// 1.添加Frame 布局按钮
     UIButton *frameBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     frameBtn.frame  = CGRectMake((screen.size.width - 180)/2, 120, 180, 30);
@@ -29,14 +32,7 @@
     [frameBtn setTitle:@"Frame Layout Demo" forState:UIControlStateNormal];
     [frameBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:frameBtn];
-    
-    
-   
-    
-    
-
 }
-
 
 
 //重写init方法

@@ -18,6 +18,7 @@
 		63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA0B22B60AE700091EDE /* MBSTabBarController.m */; };
 		63C5AA1422B6207200091EDE /* MBSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA1322B6207200091EDE /* MBSHomeViewController.m */; };
 		63C5AA1922B6303300091EDE /* FrameLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA1822B6303300091EDE /* FrameLayoutViewController.m */; };
+		63C5AA2022B63F3D00091EDE /* MBSFrameContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA1F22B63F3D00091EDE /* MBSFrameContentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		63C5AA1322B6207200091EDE /* MBSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSHomeViewController.m; sourceTree = "<group>"; };
 		63C5AA1722B6303300091EDE /* FrameLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameLayoutViewController.h; sourceTree = "<group>"; };
 		63C5AA1822B6303300091EDE /* FrameLayoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrameLayoutViewController.m; sourceTree = "<group>"; };
+		63C5AA1E22B63F3D00091EDE /* MBSFrameContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSFrameContentView.h; sourceTree = "<group>"; };
+		63C5AA1F22B63F3D00091EDE /* MBSFrameContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSFrameContentView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,10 +216,28 @@
 		63C5AA1622B6301500091EDE /* FrameLayout */ = {
 			isa = PBXGroup;
 			children = (
+				63C5AA2122B6449300091EDE /* Controllers */,
+				63C5AA1A22B63ED100091EDE /* Views */,
+			);
+			path = FrameLayout;
+			sourceTree = "<group>";
+		};
+		63C5AA1A22B63ED100091EDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA1E22B63F3D00091EDE /* MBSFrameContentView.h */,
+				63C5AA1F22B63F3D00091EDE /* MBSFrameContentView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		63C5AA2122B6449300091EDE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				63C5AA1722B6303300091EDE /* FrameLayoutViewController.h */,
 				63C5AA1822B6303300091EDE /* FrameLayoutViewController.m */,
 			);
-			path = FrameLayout;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +374,7 @@
 				63C5A9D722B601E900091EDE /* ViewController.m in Sources */,
 				63C5A9E222B601EA00091EDE /* main.m in Sources */,
 				63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */,
+				63C5AA2022B63F3D00091EDE /* MBSFrameContentView.m in Sources */,
 				63C5AA1422B6207200091EDE /* MBSHomeViewController.m in Sources */,
 				63C5A9D422B601E900091EDE /* AppDelegate.m in Sources */,
 			);
