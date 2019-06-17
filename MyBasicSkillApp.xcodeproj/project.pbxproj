@@ -23,6 +23,8 @@
 		63C5AA2A22B649E400091EDE /* MBSMasonryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA2922B649E400091EDE /* MBSMasonryViewController.m */; };
 		63C5AA2E22B64C8100091EDE /* MBSConstraintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA2D22B64C8100091EDE /* MBSConstraintViewController.m */; };
 		63C5AA3322B64D9B00091EDE /* MBSConstraintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA3222B64D9B00091EDE /* MBSConstraintView.m */; };
+		C3DD917C22B73D880059F4EF /* AutoresizingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */; };
+		C3DD917F22B73E670059F4EF /* MBSAutoresizingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD917E22B73E670059F4EF /* MBSAutoresizingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,10 @@
 		63C5AA2D22B64C8100091EDE /* MBSConstraintViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSConstraintViewController.m; sourceTree = "<group>"; };
 		63C5AA3122B64D9B00091EDE /* MBSConstraintView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSConstraintView.h; sourceTree = "<group>"; };
 		63C5AA3222B64D9B00091EDE /* MBSConstraintView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSConstraintView.m; sourceTree = "<group>"; };
+		C3DD917A22B73D880059F4EF /* AutoresizingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoresizingViewController.h; sourceTree = "<group>"; };
+		C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoresizingViewController.m; sourceTree = "<group>"; };
+		C3DD917D22B73E670059F4EF /* MBSAutoresizingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSAutoresizingView.h; sourceTree = "<group>"; };
+		C3DD917E22B73E670059F4EF /* MBSAutoresizingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSAutoresizingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,7 @@
 		63C5AA1522B6300400091EDE /* SecondaryPage */ = {
 			isa = PBXGroup;
 			children = (
+				C3DD917722B7376E0059F4EF /* Autoresizing */,
 				63C5AA2B22B64C6200091EDE /* Constraint */,
 				63C5AA2222B6498000091EDE /* MasonryLayout */,
 				63C5AA1622B6301500091EDE /* FrameLayout */,
@@ -304,6 +311,33 @@
 			children = (
 				63C5AA2D22B64C8100091EDE /* MBSConstraintViewController.m */,
 				63C5AA2C22B64C8100091EDE /* MBSConstraintViewController.h */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C3DD917722B7376E0059F4EF /* Autoresizing */ = {
+			isa = PBXGroup;
+			children = (
+				C3DD917922B73D6E0059F4EF /* Controllers */,
+				C3DD917822B73D660059F4EF /* Views */,
+			);
+			path = Autoresizing;
+			sourceTree = "<group>";
+		};
+		C3DD917822B73D660059F4EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3DD917D22B73E670059F4EF /* MBSAutoresizingView.h */,
+				C3DD917E22B73E670059F4EF /* MBSAutoresizingView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C3DD917922B73D6E0059F4EF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3DD917A22B73D880059F4EF /* AutoresizingViewController.h */,
+				C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -448,6 +482,8 @@
 				63C5AA2022B63F3D00091EDE /* MBSFrameContentView.m in Sources */,
 				63C5AA1422B6207200091EDE /* MBSHomeViewController.m in Sources */,
 				63C5AA2E22B64C8100091EDE /* MBSConstraintViewController.m in Sources */,
+				C3DD917F22B73E670059F4EF /* MBSAutoresizingView.m in Sources */,
+				C3DD917C22B73D880059F4EF /* AutoresizingViewController.m in Sources */,
 				63C5A9D422B601E900091EDE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
