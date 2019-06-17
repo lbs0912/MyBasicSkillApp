@@ -29,7 +29,7 @@
     
     if (self) {
         
-        CGFloat margin = 20.0;
+        CGFloat margin  =  20.0;
         CGFloat padding = 20.0;
         CGFloat width = (self.bounds.size.width - margin * 2 - padding) / 2;
         CGFloat height = (self.bounds.size.height - margin * 2 - padding) / 2;
@@ -50,35 +50,17 @@
         _subView4.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:.6];
         [self addSubview:_subView4];
         
+        //UIViewAutoresizingFlexibleRightMargin - 相对于父视图的右边距
+        //对subview1 设置 UIViewAutoresizingFlexibleRightMargin，自动调整subview1 和superview右边距从而保证左边距不变
         _subView1.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
         _subView2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
         _subView3.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _subView4.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
     }
-    
     return self;
 }
 
 
-
-
-- (void)layoutSubviews {
-    
-    NSLog(@"MBSFrameContentView-----%s", __FUNCTION__);
-    
-    [super layoutSubviews];
-    
-    CGFloat margin = 20.0;
-    CGFloat padding = 20.0;
-    CGFloat width = (self.bounds.size.width - margin * 2 - padding) / 2;
-    CGFloat height = (self.bounds.size.height - margin * 2 - padding) / 2;
-    
-    _subView1.frame = CGRectMake(margin, margin, width, height);
-    _subView2.frame = CGRectMake(margin + width + padding, margin, width, height);
-    _subView3.frame = CGRectMake(margin, margin + height + padding, width, height);
-    _subView4.frame = CGRectMake(margin + width + padding, margin + height + padding, width, height);
-    
-}
 
 
 

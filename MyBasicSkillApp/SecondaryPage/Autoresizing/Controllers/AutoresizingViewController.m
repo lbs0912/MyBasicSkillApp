@@ -10,9 +10,9 @@
 #import "MBSAutoresizingView.h"
 
 @interface AutoresizingViewController ()
-//@property (nonatomic, strong) MBSAutoresizingView *mbsAutoresizingView;
+@property (nonatomic, strong) MBSAutoresizingView *mbsAutoresizingView;
 
-@property (nonatomic, strong) UIView *contentView;
+//@property (nonatomic, strong) UIView *contentView;
 
 @end
 
@@ -24,30 +24,23 @@
     self.navigationItem.title = @"Autoresizing Layout Demo";
     
     
-    //使用autolayout布局，旋转屏幕，填充满整个屏幕
-    _contentView = [[UIView alloc] initWithFrame:self.view.bounds];
-    _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _contentView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:_contentView];
+      //使用autolayout布局，旋转屏幕，填充满整个屏幕
+//    _contentView = [[UIView alloc] initWithFrame:self.view.bounds];
+//    _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    _contentView.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:_contentView];
     
     
-    
-    
-//    _mbsAutoresizingView = [[MBSAutoresizingView alloc] initWithFrame:CGRectZero];
-//    _mbsAutoresizingView.backgroundColor = [UIColor grayColor];
-//    [self.view addSubview:_mbsAutoresizingView];
+
+    //使用autolayout布局， 四等分屏幕
+    _mbsAutoresizingView = [[MBSAutoresizingView alloc] initWithFrame:self.view.bounds];
+    _mbsAutoresizingView.backgroundColor = [UIColor grayColor];
+    _mbsAutoresizingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:_mbsAutoresizingView];
     
 }
 
-- (void)viewWillLayoutSubviews {
-    
-    NSLog(@"FrameLayoutViewController-----%s", __FUNCTION__);
-    //早于 ContentView 中的 layoutSubviews 方法调用
-    
-    [super viewWillLayoutSubviews];
-    
-//    _mbsAutoresizingView.frame = self.view.bounds;
-}
+
 
 
 
