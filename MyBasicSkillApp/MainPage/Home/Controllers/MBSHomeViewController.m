@@ -109,6 +109,9 @@
         case 4: //masonryLayout
             [self.navigationController pushViewController:masonryLayoutVC animated:NO];
             break;
+        case 5: //masonryLayout
+            [self.navigationController pushViewController:masonryLayoutVC animated:NO];
+            break;
         default:
             break;
     }
