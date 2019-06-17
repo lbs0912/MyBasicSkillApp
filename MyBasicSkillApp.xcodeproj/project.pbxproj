@@ -27,6 +27,7 @@
 		ACAD52E4CE5E6FD0FD054D51 /* libPods-MyBasicSkillAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C4D10BA62689CF94DB5D8E /* libPods-MyBasicSkillAppUITests.a */; };
 		C3DD917C22B73D880059F4EF /* AutoresizingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */; };
 		C3DD917F22B73E670059F4EF /* MBSAutoresizingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD917E22B73E670059F4EF /* MBSAutoresizingView.m */; };
+		C3DD918C22B7E30E0059F4EF /* MBSStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD918B22B7E30E0059F4EF /* MBSStackViewController.m */; };
 		E47B38E20AFB8EED83C25D0B /* libPods-MyBasicSkillApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2807D5415D34EC0D59468EAB /* libPods-MyBasicSkillApp.a */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,8 @@
 		C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoresizingViewController.m; sourceTree = "<group>"; };
 		C3DD917D22B73E670059F4EF /* MBSAutoresizingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSAutoresizingView.h; sourceTree = "<group>"; };
 		C3DD917E22B73E670059F4EF /* MBSAutoresizingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSAutoresizingView.m; sourceTree = "<group>"; };
+		C3DD918A22B7E30E0059F4EF /* MBSStackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSStackViewController.h; sourceTree = "<group>"; };
+		C3DD918B22B7E30E0059F4EF /* MBSStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSStackViewController.m; sourceTree = "<group>"; };
 		F27F940447975AFCB39AE1B7 /* Pods-MyBasicSkillAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBasicSkillAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBasicSkillAppUITests/Pods-MyBasicSkillAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -266,6 +269,7 @@
 		63C5AA1522B6300400091EDE /* SecondaryPage */ = {
 			isa = PBXGroup;
 			children = (
+				C3DD918922B7E0D60059F4EF /* StackView */,
 				C3DD917722B7376E0059F4EF /* Autoresizing */,
 				63C5AA2B22B64C6200091EDE /* Constraint */,
 				63C5AA2222B6498000091EDE /* MasonryLayout */,
@@ -380,6 +384,15 @@
 				C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C3DD918922B7E0D60059F4EF /* StackView */ = {
+			isa = PBXGroup;
+			children = (
+				C3DD918A22B7E30E0059F4EF /* MBSStackViewController.h */,
+				C3DD918B22B7E30E0059F4EF /* MBSStackViewController.m */,
+			);
+			path = StackView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -592,6 +605,7 @@
 				63C5AA2522B649AF00091EDE /* MBSMasonryContentView.m in Sources */,
 				63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */,
 				63C5AA2022B63F3D00091EDE /* MBSFrameContentView.m in Sources */,
+				C3DD918C22B7E30E0059F4EF /* MBSStackViewController.m in Sources */,
 				63C5AA1422B6207200091EDE /* MBSHomeViewController.m in Sources */,
 				63C5AA2E22B64C8100091EDE /* MBSConstraintViewController.m in Sources */,
 				C3DD917F22B73E670059F4EF /* MBSAutoresizingView.m in Sources */,
