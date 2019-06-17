@@ -49,10 +49,10 @@
     
     /// 3.添加Constraint布局按钮
     UIButton *constraintBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    constraintBtn.frame  = CGRectMake((screen.size.width - 180)/2, 200, 180, 30);
+    constraintBtn.frame  = CGRectMake((screen.size.width - 220)/2, 200, 220, 30);
     [constraintBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     constraintBtn.tag = 3;
-    [constraintBtn setTitle:@"Constraint Layout Demo" forState:UIControlStateNormal];
+    [constraintBtn setTitle:@"Constraint (AutoLayout) Demo" forState:UIControlStateNormal];
     [constraintBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:constraintBtn];
     
