@@ -8,6 +8,8 @@
 
 #import "MBSHomeViewController.h"
 #import "FrameLayoutViewController.h"
+#import "MBSMasonryViewController.h"
+#import "MBSConstraintViewController.h"
 
 @interface MBSHomeViewController ()
 
@@ -29,9 +31,28 @@
     UIButton *frameBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     frameBtn.frame  = CGRectMake((screen.size.width - 180)/2, 120, 180, 30);
     [frameBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    frameBtn.tag = 1;
     [frameBtn setTitle:@"Frame Layout Demo" forState:UIControlStateNormal];
     [frameBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:frameBtn];
+    
+    /// 2.添加Masonry 布局按钮
+    UIButton *masonryBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    masonryBtn.frame  = CGRectMake((screen.size.width - 180)/2, 160, 180, 30);
+    [masonryBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    masonryBtn.tag = 2;
+    [masonryBtn setTitle:@"Masonry Layout Demo" forState:UIControlStateNormal];
+    [masonryBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:masonryBtn];
+    
+    /// 3.添加Constraint布局按钮
+    UIButton *constraintBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    constraintBtn.frame  = CGRectMake((screen.size.width - 180)/2, 200, 180, 30);
+    [constraintBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    constraintBtn.tag = 3;
+    [constraintBtn setTitle:@"Constraint Layout Demo" forState:UIControlStateNormal];
+    [constraintBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:constraintBtn];
 }
 
 
@@ -49,9 +70,27 @@
 }
 
 
-- (void) onClick: (id) sender {
+- (void) onClick: (UIButton *) button {
     FrameLayoutViewController *frameLayoutVC = [[FrameLayoutViewController alloc] init];
-    [self.navigationController pushViewController:frameLayoutVC animated:NO];
+    MBSMasonryViewController  *masonryLayoutVC = [[MBSMasonryViewController alloc] init];
+    MBSConstraintViewController  *constraintLayoutVC = [[MBSConstraintViewController alloc] init];
+    
+    switch (button.tag) {
+        case 1: //frameLayout
+           [self.navigationController pushViewController:frameLayoutVC animated:NO];
+            break;
+        case 2: //masonryLayout
+            [self.navigationController pushViewController:masonryLayoutVC animated:NO];
+            break;
+        case 3: //constraintLayout
+            [self.navigationController pushViewController:constraintLayoutVC animated:NO];
+            break;
+        default:
+            break;
+    }
+    
+   
 }
+
 
 @end
