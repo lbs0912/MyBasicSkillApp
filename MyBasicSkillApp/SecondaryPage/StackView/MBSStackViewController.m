@@ -35,11 +35,12 @@
     subView4.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:.6];
     
     
+    // 创建StackView 1
     UIStackView *subStackView1 = [[UIStackView alloc] initWithFrame:CGRectZero];
-    subStackView1.spacing = 10.0;
-    subStackView1.alignment = UIStackViewAlignmentFill;
-    subStackView1.axis = UILayoutConstraintAxisHorizontal;
-    subStackView1.distribution = UIStackViewDistributionFillEqually;
+    subStackView1.spacing = 10.0; //设置 stackView 子视图之间的间距
+    subStackView1.alignment = UIStackViewAlignmentFill; //负责设置 stackView 子视图的对齐方式
+    subStackView1.axis = UILayoutConstraintAxisHorizontal; //设置 stackView 排列方向 水平排列
+    subStackView1.distribution = UIStackViewDistributionFillEqually; //设置 stackView 子视图的宽度或高度布局
     [subStackView1 addArrangedSubview:subView1];
     [subStackView1 addArrangedSubview:subView2];
     
