@@ -48,6 +48,22 @@
 }
 
 
+- (void) showTipAlert {
+    //1. 初始化
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Tip"
+                                                                             message:@"Show NSLog for information"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    // 2.创建并添加按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"OK Action");
+    }];
+    [alertController addAction:okAction];
+    
+    //3. 展示
+    [self presentViewController:alertController animated:YES completion:nil];
+   
+}
+
 - (void) timerTick {
     NSLog(@"%@",[NSDate date]);
 }
@@ -71,7 +87,8 @@
  NSData + NSURL  同步请求，阻塞队列
  */
 - (void) syncRequestWithNSData {
-    ///@TODO alert  弹窗
+ 
+    [self showTipAlert];
     
     // h使用node搭建本地HTTP服务，访问端口号8001
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8001"]];
