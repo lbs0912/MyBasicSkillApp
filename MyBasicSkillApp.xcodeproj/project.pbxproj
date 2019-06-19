@@ -29,6 +29,7 @@
 		C3DD917C22B73D880059F4EF /* AutoresizingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */; };
 		C3DD917F22B73E670059F4EF /* MBSAutoresizingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD917E22B73E670059F4EF /* MBSAutoresizingView.m */; };
 		C3DD918C22B7E30E0059F4EF /* MBSStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD918B22B7E30E0059F4EF /* MBSStackViewController.m */; };
+		C3DD919422BA618A0059F4EF /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C3DD919322BA618A0059F4EF /* 2.jpg */; };
 		E47B38E20AFB8EED83C25D0B /* libPods-MyBasicSkillApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2807D5415D34EC0D59468EAB /* libPods-MyBasicSkillApp.a */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		C3DD917E22B73E670059F4EF /* MBSAutoresizingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSAutoresizingView.m; sourceTree = "<group>"; };
 		C3DD918A22B7E30E0059F4EF /* MBSStackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSStackViewController.h; sourceTree = "<group>"; };
 		C3DD918B22B7E30E0059F4EF /* MBSStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSStackViewController.m; sourceTree = "<group>"; };
+		C3DD919322BA618A0059F4EF /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		F27F940447975AFCB39AE1B7 /* Pods-MyBasicSkillAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBasicSkillAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBasicSkillAppUITests/Pods-MyBasicSkillAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +179,7 @@
 		63C5A9D122B601E900091EDE /* MyBasicSkillApp */ = {
 			isa = PBXGroup;
 			children = (
+				C3DD919322BA618A0059F4EF /* 2.jpg */,
 				63C5AA1522B6300400091EDE /* SecondaryPage */,
 				63C5AA0D22B6202500091EDE /* MainPage */,
 				63C5AA0522B6034C00091EDE /* Tab */,
@@ -523,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C5A9DF22B601EA00091EDE /* LaunchScreen.storyboard in Resources */,
+				C3DD919422BA618A0059F4EF /* 2.jpg in Resources */,
 				63C5A9DC22B601EA00091EDE /* Assets.xcassets in Resources */,
 				63C5A9DA22B601E900091EDE /* Main.storyboard in Resources */,
 			);

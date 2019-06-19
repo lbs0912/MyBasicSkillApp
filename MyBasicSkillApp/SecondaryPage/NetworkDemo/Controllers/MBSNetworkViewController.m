@@ -73,6 +73,24 @@
     [httpsAsyncRequestBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:httpsAsyncRequestBtn];
     
+    /// 5. 异步文件下载
+    UIButton *asyncFileDownload = [UIButton buttonWithType:UIButtonTypeSystem];
+    asyncFileDownload.frame  = CGRectMake((screen.size.width - 300)/2, 280, 300, 30);
+    [asyncFileDownload setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    asyncFileDownload.tag = 5;
+    [asyncFileDownload setTitle:@"Async File Download" forState:UIControlStateNormal];
+    [asyncFileDownload addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:asyncFileDownload];
+    
+    /// 6. 异步文件上传
+    UIButton *asyncFileUpload = [UIButton buttonWithType:UIButtonTypeSystem];
+    asyncFileUpload.frame  = CGRectMake((screen.size.width - 300)/2, 320, 300, 30);
+    [asyncFileUpload setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    asyncFileUpload.tag = 6;
+    [asyncFileUpload setTitle:@"Async File Upload" forState:UIControlStateNormal];
+    [asyncFileUpload addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:asyncFileUpload];
+    
 }
 
 
@@ -110,12 +128,81 @@
         case 4: // HTTPS 异步请求
             [self httpsAsyncRequestWithNSURLConnection];
             break;
+        case 5: // 异步文件下载
+            [self asyncFileDownload];
+            break;
+        case 6: // 异步文件上传
+            [self asyncFileUpload];
+            break;
         default:
             break;
     }
     
     
 }
+
+
+#pragma mark - 异步文件下载
+
+- (void) asyncFileDownload {
+    //string 转 url编码
+    NSString *urlString = @"http://localhost:8001/download";
+    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [connection start];
+}
+
+
+
+#pragma mark - 异步文件上传
+- (void) asyncFileUpload{
+    
+    #define Encode(str) [str dataUsingEncoding:NSUTF8StringEncoding]
+    
+    NSURL *dataurl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"2" ofType:@"jpg"]];
+    NSData *data = [NSData dataWithContentsOfURL:dataurl];
+    
+    //string 转 url编码
+    NSString *urlString = @"http://localhost:8001/upload";
+    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    
+    /** 设置请求头 */
+    NSMutableData *body = [NSMutableData data];
+    
+    //文件参数
+    // 参数开始的标志
+    [body appendData:Encode(@"--YY\r\n")];
+    // name : 指定参数名(必须跟服务器端保持一致)
+    // filename : 文件名
+    NSString *disposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", @"file", @"1.jpg"];
+    [body appendData:Encode(disposition)];
+    NSString *type = [NSString stringWithFormat:@"Content-Type: %@\r\n", @"multipart/form-data"];
+    [body appendData:Encode(type)];
+    [body appendData:Encode(@"\r\n")];
+    
+    //添加图片数据
+    [body appendData:data];
+    [body appendData:Encode(@"\r\n")];
+    //结束符
+    [body appendData:Encode(@"--YY--\r\n")];
+    //把body添加到request中
+    [request setHTTPBody:body];
+    
+    /** 设置请求头 */
+    // 请求体的长度
+    [request setValue:[NSString stringWithFormat:@"%zd", body.length] forHTTPHeaderField:@"Content-Length"];
+    // 声明这个POST请求是个文件上传
+    [request setValue:@"multipart/form-data; boundary=YY" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    
+
+    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [connection start];
+}
+
 
 
 #pragma mark - 同步请求
@@ -242,6 +329,8 @@
     NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
     NSLog(@"response:%@",resp);
     
+    // 获取content-length 大小
+    [[((NSHTTPURLResponse *)response) allHeaderFields]objectForKey:@"Content-length"];
 }
 
 //接收数据
@@ -249,7 +338,14 @@
     NSLog(@"=================didReceiveData=================");
     
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSLog(@"data.length:%lu",(unsigned long)data.length);
     NSLog(@"data:%@",dic);
+    
+    //展示从服务端下载的图片
+    UIImage *img = [UIImage imageWithData:data];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:img];
+    [imageView setFrame:CGRectMake(30, 400, 200, 200)];
+    [self.view addSubview:imageView];
     
 }
 
@@ -259,6 +355,14 @@
   totalBytesWritten:(NSInteger)totalBytesWritten
   totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite{
     NSLog(@"=================totalBytesWritten=================");
+    NSLog(@"didSendBodyData:%ld,totalBytesWritten:%ld,totalBytesExpectedToWrite:%ld",(long)bytesWritten,(long)totalBytesWritten,
+      (long)totalBytesExpectedToWrite);
+    NSLog(@"上传进度%ld%%",(long)(totalBytesWritten*100 / totalBytesExpectedToWrite));
+    
+    //测试取消上传
+    if((totalBytesWritten*100 / totalBytesExpectedToWrite) > 50){
+        [connection cancel];
+    }
 }
 
 //完成请求
