@@ -23,6 +23,7 @@
 		63C5AA2A22B649E400091EDE /* MBSMasonryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA2922B649E400091EDE /* MBSMasonryViewController.m */; };
 		63C5AA2E22B64C8100091EDE /* MBSConstraintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA2D22B64C8100091EDE /* MBSConstraintViewController.m */; };
 		63C5AA3322B64D9B00091EDE /* MBSConstraintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA3222B64D9B00091EDE /* MBSConstraintView.m */; };
+		63C5AA3822B935D400091EDE /* MBSNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5AA3722B935D400091EDE /* MBSNetworkViewController.m */; };
 		652FB7726EE679F97142F82C /* libPods-MyBasicSkillAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 075BC06001C13857EE0550F8 /* libPods-MyBasicSkillAppTests.a */; };
 		ACAD52E4CE5E6FD0FD054D51 /* libPods-MyBasicSkillAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C4D10BA62689CF94DB5D8E /* libPods-MyBasicSkillAppUITests.a */; };
 		C3DD917C22B73D880059F4EF /* AutoresizingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DD917B22B73D880059F4EF /* AutoresizingViewController.m */; };
@@ -85,6 +86,8 @@
 		63C5AA2D22B64C8100091EDE /* MBSConstraintViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSConstraintViewController.m; sourceTree = "<group>"; };
 		63C5AA3122B64D9B00091EDE /* MBSConstraintView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSConstraintView.h; sourceTree = "<group>"; };
 		63C5AA3222B64D9B00091EDE /* MBSConstraintView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSConstraintView.m; sourceTree = "<group>"; };
+		63C5AA3622B935D400091EDE /* MBSNetworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSNetworkViewController.h; sourceTree = "<group>"; };
+		63C5AA3722B935D400091EDE /* MBSNetworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSNetworkViewController.m; sourceTree = "<group>"; };
 		6B38089DDF71876AC2CE675D /* Pods-MyBasicSkillApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBasicSkillApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBasicSkillApp/Pods-MyBasicSkillApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9063F5632F2B8DA3251E1F14 /* Pods-MyBasicSkillAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBasicSkillAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBasicSkillAppTests/Pods-MyBasicSkillAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		945FDD028DCA62549E99BC8E /* Pods-MyBasicSkillApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBasicSkillApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBasicSkillApp/Pods-MyBasicSkillApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +272,7 @@
 		63C5AA1522B6300400091EDE /* SecondaryPage */ = {
 			isa = PBXGroup;
 			children = (
+				63C5AA3422B9359300091EDE /* NetworkDemo */,
 				C3DD918922B7E0D60059F4EF /* StackView */,
 				C3DD917722B7376E0059F4EF /* Autoresizing */,
 				63C5AA2B22B64C6200091EDE /* Constraint */,
@@ -355,6 +359,23 @@
 			children = (
 				63C5AA2D22B64C8100091EDE /* MBSConstraintViewController.m */,
 				63C5AA2C22B64C8100091EDE /* MBSConstraintViewController.h */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		63C5AA3422B9359300091EDE /* NetworkDemo */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA3522B935A900091EDE /* Controllers */,
+			);
+			path = NetworkDemo;
+			sourceTree = "<group>";
+		};
+		63C5AA3522B935A900091EDE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				63C5AA3622B935D400091EDE /* MBSNetworkViewController.h */,
+				63C5AA3722B935D400091EDE /* MBSNetworkViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -602,6 +623,7 @@
 				63C5A9E222B601EA00091EDE /* main.m in Sources */,
 				63C5AA2A22B649E400091EDE /* MBSMasonryViewController.m in Sources */,
 				63C5AA3322B64D9B00091EDE /* MBSConstraintView.m in Sources */,
+				63C5AA3822B935D400091EDE /* MBSNetworkViewController.m in Sources */,
 				63C5AA2522B649AF00091EDE /* MBSMasonryContentView.m in Sources */,
 				63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */,
 				63C5AA2022B63F3D00091EDE /* MBSFrameContentView.m in Sources */,

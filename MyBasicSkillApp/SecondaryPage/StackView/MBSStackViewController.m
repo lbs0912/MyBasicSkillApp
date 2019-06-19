@@ -21,6 +21,7 @@
 
 
 - (void)setupStackView {
+    self.navigationItem.title = @"StackView Layout Demo";
     
     UIView *subView1 = [[UIView alloc] initWithFrame:CGRectZero];
     subView1.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:.6];

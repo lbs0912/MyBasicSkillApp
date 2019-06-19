@@ -11,6 +11,7 @@
 #import "MBSMasonryViewController.h"
 #import "MBSConstraintViewController.h"
 #import "AutoresizingViewController.h"
+#import "MBSNetworkViewController.h"
 
 @interface MBSHomeViewController ()
 
@@ -73,6 +74,15 @@
     [masonryBtn setTitle:@"Masonry Layout Demo" forState:UIControlStateNormal];
     [masonryBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:masonryBtn];
+    
+    /// 6.添加 NetworkDemo 按钮
+    UIButton *networkDemoBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    networkDemoBtn.frame  = CGRectMake((screen.size.width - 180)/2, 320, 180, 30);
+    [networkDemoBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    networkDemoBtn.tag = 6;
+    [networkDemoBtn setTitle:@"Network Demo" forState:UIControlStateNormal];
+    [networkDemoBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:networkDemoBtn];
 }
 
 
@@ -95,7 +105,7 @@
     MBSMasonryViewController  *masonryLayoutVC = [[MBSMasonryViewController alloc] init];
     MBSConstraintViewController  *constraintLayoutVC = [[MBSConstraintViewController alloc] init];
     AutoresizingViewController  *autoresizingVC = [[AutoresizingViewController alloc] init];
-    
+    MBSNetworkViewController *mbsNetworkViewController = [[MBSNetworkViewController alloc] init];
     switch (button.tag) {
         case 1: //frameLayout
            [self.navigationController pushViewController:frameLayoutVC animated:NO];
@@ -111,6 +121,9 @@
             break;
         case 5: //masonryLayout
             [self.navigationController pushViewController:masonryLayoutVC animated:NO];
+            break;
+        case 6:
+            [self.navigationController pushViewController:mbsNetworkViewController animated:YES];
             break;
         default:
             break;
