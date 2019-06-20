@@ -23,8 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSUInteger count = 10;
-    NSString *str = @"Test";
+   
     
     NSLog(@"========   HomeViewController 将要加载视图： viewDidLoad   =======\n");
     [self setUpUI];
