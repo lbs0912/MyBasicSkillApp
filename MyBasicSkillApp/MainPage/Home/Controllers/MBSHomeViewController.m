@@ -12,6 +12,7 @@
 #import "MBSConstraintViewController.h"
 #import "AutoresizingViewController.h"
 #import "MBSNetworkViewController.h"
+#import "MBSViewControllerLifeTest.h"
 
 @interface MBSHomeViewController ()
 
@@ -21,8 +22,89 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+   
+    
+    NSLog(@"========   HomeViewController 将要加载视图： viewDidLoad   =======\n");
     [self setUpUI];
 }
+
+
+#pragma mark - life cycle
+
++ (void)initialize {
+    NSLog(@"========   HomeViewController  类初始化方法： initialize   =======\n");
+}
+
+
+//重写init方法
+-(instancetype) init {
+    if ([super init] != nil)
+    {
+        // 为该控制器设置标签项
+        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1];
+        self.tabBarItem.badgeValue = @"3";
+        
+    }
+    NSLog(@"========    HomeViewController 实例初始化方法： init   =======\n");
+    
+    return self;
+}
+
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    NSLog(@"========    HomeViewController 从归档初始化：  initWithCoder:(NSCoder *)aDecoder   =======\n");
+    return self;
+}
+
+- (void)loadView {
+    [super loadView];
+    NSLog(@"========    HomeViewController 加载视图： loadView   =======\n");
+}
+
+
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    NSLog(@"========    HomeViewController 将要布局子视图： viewWillLayoutSubviews   =======\n");
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    NSLog(@"========    HomeViewController 已经布局子视图： viewDidLayoutSubviews   =======\n");
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    NSLog(@"========   收到内存警告： didReceiveMemoryWarning   =======\n");
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"========    HomeViewController 视图将要出现： viewWillAppear:(BOOL)animated   =======\n");
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSLog(@"========    HomeViewController 视图已经出现： viewDidAppear:(BOOL)animated   =======\n");
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"========    HomeViewController 视图将要消失： viewWillDisappear:(BOOL)animated   =======\n");
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"========    HomeViewController 视图已经消失： viewDidDisappear:(BOOL)animated   =======\n");
+}
+
+- (void)dealloc {
+    NSLog(@"========   HomeViewController  释放： dealloc   =======\n");
+}
+
+
 
 
 #pragma mark - setUpUI
@@ -83,21 +165,17 @@
     [networkDemoBtn setTitle:@"Network Demo" forState:UIControlStateNormal];
     [networkDemoBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:networkDemoBtn];
+    
+    /// 7. ViewController 生命周期测试
+    UIButton *viewControllerLifeCycleTest = [UIButton buttonWithType:UIButtonTypeSystem];
+    viewControllerLifeCycleTest.frame  = CGRectMake((screen.size.width - 320)/2, 360, 320, 30);
+    [viewControllerLifeCycleTest setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    viewControllerLifeCycleTest.tag = 7;
+    [viewControllerLifeCycleTest setTitle:@"ViewController LifeCycle Test" forState:UIControlStateNormal];
+    [viewControllerLifeCycleTest addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:viewControllerLifeCycleTest];
 }
 
-
-//重写init方法
--(id) init {
-    if ([super init] != nil)
-    {
-        // 为该控制器设置标签项
-        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1];
-        self.tabBarItem.badgeValue = @"3";
-    
-    }
-    
-    return self;
-}
 
 
 - (void) onClick: (UIButton *) button {
@@ -106,12 +184,14 @@
     MBSConstraintViewController  *constraintLayoutVC = [[MBSConstraintViewController alloc] init];
     AutoresizingViewController  *autoresizingVC = [[AutoresizingViewController alloc] init];
     MBSNetworkViewController *mbsNetworkViewController = [[MBSNetworkViewController alloc] init];
+    MBSViewControllerLifeTest *mbsViewControllerLifeTest = [[MBSViewControllerLifeTest alloc] init];
+    
     switch (button.tag) {
         case 1: //frameLayout
            [self.navigationController pushViewController:frameLayoutVC animated:NO];
             break;
         case 2: //auytoresizingLayout
-            [self.navigationController pushViewController:autoresizingVC animated:NO];
+            [self.navigationController pushViewController:autoresizingVC animated:YES];
             break;
         case 3: //constraintLayout
             [self.navigationController pushViewController:constraintLayoutVC animated:NO];
@@ -124,6 +204,9 @@
             break;
         case 6:
             [self.navigationController pushViewController:mbsNetworkViewController animated:YES];
+            break;
+        case 7:
+            [self.navigationController pushViewController:mbsViewControllerLifeTest animated:NO];
             break;
         default:
             break;
