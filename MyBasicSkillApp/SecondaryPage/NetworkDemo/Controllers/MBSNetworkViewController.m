@@ -91,6 +91,42 @@
     [asyncFileUpload addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:asyncFileUpload];
     
+    /// 7. 从服务端读取cookie
+    UIButton *getCookieFromServer = [UIButton buttonWithType:UIButtonTypeSystem];
+    getCookieFromServer.frame  = CGRectMake((screen.size.width - 300)/2, 360, 300, 30);
+    [getCookieFromServer setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    getCookieFromServer.tag = 7;
+    [getCookieFromServer setTitle:@"Get Cookie From Server" forState:UIControlStateNormal];
+    [getCookieFromServer addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:getCookieFromServer];
+    
+    /// 8. 读取客户端cookie
+    UIButton *getCookieFromClient = [UIButton buttonWithType:UIButtonTypeSystem];
+    getCookieFromClient.frame  = CGRectMake((screen.size.width - 300)/2, 400, 300, 30);
+    [getCookieFromClient setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    getCookieFromClient.tag = 8;
+    [getCookieFromClient setTitle:@"Get Cookie From Client" forState:UIControlStateNormal];
+    [getCookieFromClient addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:getCookieFromClient];
+    
+    /// 9. 客户端设置cookie
+    UIButton *setCookieAtClient = [UIButton buttonWithType:UIButtonTypeSystem];
+    setCookieAtClient.frame  = CGRectMake((screen.size.width - 300)/2, 440, 300, 30);
+    [setCookieAtClient setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    setCookieAtClient.tag = 9;
+    [setCookieAtClient setTitle:@"Set Cookie At Client" forState:UIControlStateNormal];
+    [setCookieAtClient addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:setCookieAtClient];
+    
+    /// 10. 删除全部cookie
+    UIButton *deleteAllCookies = [UIButton buttonWithType:UIButtonTypeSystem];
+    deleteAllCookies.frame  = CGRectMake((screen.size.width - 300)/2, 480, 300, 30);
+    [deleteAllCookies setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    deleteAllCookies.tag = 10;
+    [deleteAllCookies setTitle:@"Delete All Cookies" forState:UIControlStateNormal];
+    [deleteAllCookies addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:deleteAllCookies];
+    
 }
 
 
@@ -134,12 +170,114 @@
         case 6: // 异步文件上传
             [self asyncFileUpload];
             break;
+        case 7: // 从服务端读取cookie
+            [self getCookieFromServer];
+            break;
+        case 8: // 从客户端读取cookie
+            [self getClientCookie];
+            break;
+        case 9: // 客户端设置cookie
+            [self clientSetCookie];
+            break;
+        case 10: // 删除全部cookie
+            [self asyncFileUpload];
+            break;
         default:
             break;
     }
     
     
 }
+
+
+
+#pragma mark - 从服务端读取cookie 同步读取
+- (void) getCookieFromServer {
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8001/cookie"]];
+    NSURLResponse *resp;
+    NSError *err;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err];
+    NSLog(@"====请求开始====");
+    //检查错误
+    if (err) {
+        NSLog(@"%@",err);
+        NSLog(@"==resq====%@",resp);
+        return;
+    }
+
+    //检验状态码
+    if ([resp isKindOfClass:[NSHTTPURLResponse class]]) {
+        if (((NSHTTPURLResponse *)resp).statusCode != 200) {
+            return;
+        }
+    }
+    
+    //解析json
+    NSLog(@"%@",[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err ]);
+    
+    NSLog(@"====请求结束====");
+    
+    //获取cookie
+    NSDictionary *headers = [((NSHTTPURLResponse *)resp) allHeaderFields];
+    NSLog(@"headers:%@",headers);
+    NSDictionary *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:headers forURL:[NSURL URLWithString:@"http://localhost/"]];
+    
+    for (NSHTTPCookie *cookie in cookies) {
+        NSLog(@"cookie:%@",cookie);
+        if ([[cookie name] isEqualToString:@"JSESSIONID"]) {
+            NSLog(@"session id is %@",[cookie value]);
+        }
+    }
+}
+
+#pragma mark - 读取客户端本地 cookie
+- (void) getClientCookie{
+    //获取本地cookie
+    NSHTTPCookieStorage *httpCookiesStorage =  [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSDictionary *cookies = [httpCookiesStorage cookiesForURL:[NSURL URLWithString:@"http://localhost/"]];
+    for (NSHTTPCookie *cookie in cookies) {
+        NSLog(@"cookie:%@",cookie);
+    }
+    
+}
+
+#pragma mark - 客户端设置本地cookie
+
+- (void) clientSetCookie{
+    NSDictionary *prop1 = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"a",NSHTTPCookieName,
+                           @"aaa",NSHTTPCookieValue,
+                           @"/",NSHTTPCookiePath,
+                           [NSURL URLWithString:@"http://localhost/"],NSHTTPCookieOriginURL,
+                           [NSDate dateWithTimeIntervalSinceNow:60],NSHTTPCookieExpires,
+                           nil];
+    //NSDate dateWithTimeIntervalSinceNow:60 设置1分钟后超时
+    
+    NSDictionary *prop2 = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"b",NSHTTPCookieName,
+                           @"bbb",NSHTTPCookieValue,
+                           @"/",NSHTTPCookiePath,
+                           [NSURL URLWithString:@"http://localhost/"],NSHTTPCookieOriginURL,
+                           [NSDate dateWithTimeIntervalSinceNow:60],NSHTTPCookieExpires,
+                           nil];
+    
+    NSHTTPCookie *cookie1 = [NSHTTPCookie cookieWithProperties:prop1];
+    NSHTTPCookie *cookie2 = [NSHTTPCookie cookieWithProperties:prop2];
+    
+    //单个设置
+    //    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie1];
+    //    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie2];
+    
+    //批量设置
+    NSArray *cookies = @[cookie1,cookie2];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage]setCookies:cookies forURL:[NSURL URLWithString:@"http://localhost/"] mainDocumentURL:nil];
+    
+    NSLog(@"设置完成");
+}
+
+
+
 
 
 #pragma mark - 异步文件下载
