@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6382837222BF752C0080B0B0 /* CategoryPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6382837122BF752C0080B0B0 /* CategoryPageViewController.m */; };
+		6382837622BF7C800080B0B0 /* MBSContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 6382837522BF7C800080B0B0 /* MBSContact.m */; };
+		6382837922BF7DA80080B0B0 /* MBSContactGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6382837822BF7DA80080B0B0 /* MBSContactGroup.m */; };
 		63C5A9D422B601E900091EDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5A9D322B601E900091EDE /* AppDelegate.m */; };
 		63C5A9D722B601E900091EDE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C5A9D622B601E900091EDE /* ViewController.m */; };
 		63C5A9DA22B601E900091EDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C5A9D822B601E900091EDE /* Main.storyboard */; };
@@ -56,6 +59,12 @@
 		075BC06001C13857EE0550F8 /* libPods-MyBasicSkillAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyBasicSkillAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2807D5415D34EC0D59468EAB /* libPods-MyBasicSkillApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyBasicSkillApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB17431BAEDAA9A22071BE2 /* Pods-MyBasicSkillAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBasicSkillAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBasicSkillAppTests/Pods-MyBasicSkillAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		6382837022BF752C0080B0B0 /* CategoryPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryPageViewController.h; sourceTree = "<group>"; };
+		6382837122BF752C0080B0B0 /* CategoryPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryPageViewController.m; sourceTree = "<group>"; };
+		6382837422BF7C800080B0B0 /* MBSContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSContact.h; sourceTree = "<group>"; };
+		6382837522BF7C800080B0B0 /* MBSContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSContact.m; sourceTree = "<group>"; };
+		6382837722BF7DA80080B0B0 /* MBSContactGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSContactGroup.h; sourceTree = "<group>"; };
+		6382837822BF7DA80080B0B0 /* MBSContactGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSContactGroup.m; sourceTree = "<group>"; };
 		63C5A9CF22B601E900091EDE /* MyBasicSkillApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBasicSkillApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C5A9D222B601E900091EDE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		63C5A9D322B601E900091EDE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -157,6 +166,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6382837322BF7C610080B0B0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6382837422BF7C800080B0B0 /* MBSContact.h */,
+				6382837522BF7C800080B0B0 /* MBSContact.m */,
+				6382837722BF7DA80080B0B0 /* MBSContactGroup.h */,
+				6382837822BF7DA80080B0B0 /* MBSContactGroup.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		63C5A9C622B601E900091EDE = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +257,7 @@
 		63C5AA0D22B6202500091EDE /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				63C5AA3922BF74E700091EDE /* CategoryPage */,
 				63C5AA0E22B6203C00091EDE /* Home */,
 			);
 			path = MainPage;
@@ -383,6 +404,24 @@
 			children = (
 				63C5AA3622B935D400091EDE /* MBSNetworkViewController.h */,
 				63C5AA3722B935D400091EDE /* MBSNetworkViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		63C5AA3922BF74E700091EDE /* CategoryPage */ = {
+			isa = PBXGroup;
+			children = (
+				6382837322BF7C610080B0B0 /* Models */,
+				63C5AA3A22BF74FB00091EDE /* Controllers */,
+			);
+			path = CategoryPage;
+			sourceTree = "<group>";
+		};
+		63C5AA3A22BF74FB00091EDE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6382837022BF752C0080B0B0 /* CategoryPageViewController.h */,
+				6382837122BF752C0080B0B0 /* CategoryPageViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -645,6 +684,9 @@
 				C3DD919822BB23660059F4EF /* MBSViewControllerLifeTest.m in Sources */,
 				63C5AA0C22B60AE700091EDE /* MBSTabBarController.m in Sources */,
 				63C5AA2022B63F3D00091EDE /* MBSFrameContentView.m in Sources */,
+				6382837222BF752C0080B0B0 /* CategoryPageViewController.m in Sources */,
+				6382837922BF7DA80080B0B0 /* MBSContactGroup.m in Sources */,
+				6382837622BF7C800080B0B0 /* MBSContact.m in Sources */,
 				C3DD918C22B7E30E0059F4EF /* MBSStackViewController.m in Sources */,
 				63C5AA1422B6207200091EDE /* MBSHomeViewController.m in Sources */,
 				63C5AA2E22B64C8100091EDE /* MBSConstraintViewController.m in Sources */,

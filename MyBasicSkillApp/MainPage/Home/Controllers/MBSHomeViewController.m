@@ -14,6 +14,7 @@
 #import "MBSNetworkViewController.h"
 #import "MBSViewControllerLifeTest.h"
 
+
 @interface MBSHomeViewController ()
 
 @end
@@ -25,7 +26,7 @@
     
    
     
-    NSLog(@"========   HomeViewController 将要加载视图： viewDidLoad   =======\n");
+//    NSLog(@"========   HomeViewController 将要加载视图： viewDidLoad   =======\n");
     [self setUpUI];
 }
 
@@ -33,7 +34,7 @@
 #pragma mark - life cycle
 
 + (void)initialize {
-    NSLog(@"========   HomeViewController  类初始化方法： initialize   =======\n");
+//    NSLog(@"========   HomeViewController  类初始化方法： initialize   =======\n");
 }
 
 
@@ -46,7 +47,7 @@
         self.tabBarItem.badgeValue = @"3";
         
     }
-    NSLog(@"========    HomeViewController 实例初始化方法： init   =======\n");
+//    NSLog(@"========    HomeViewController 实例初始化方法： init   =======\n");
     
     return self;
 }
@@ -54,54 +55,54 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    NSLog(@"========    HomeViewController 从归档初始化：  initWithCoder:(NSCoder *)aDecoder   =======\n");
+//    NSLog(@"========    HomeViewController 从归档初始化：  initWithCoder:(NSCoder *)aDecoder   =======\n");
     return self;
 }
 
 - (void)loadView {
     [super loadView];
-    NSLog(@"========    HomeViewController 加载视图： loadView   =======\n");
+//    NSLog(@"========    HomeViewController 加载视图： loadView   =======\n");
 }
 
 
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    NSLog(@"========    HomeViewController 将要布局子视图： viewWillLayoutSubviews   =======\n");
+//    NSLog(@"========    HomeViewController 将要布局子视图： viewWillLayoutSubviews   =======\n");
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    NSLog(@"========    HomeViewController 已经布局子视图： viewDidLayoutSubviews   =======\n");
+//    NSLog(@"========    HomeViewController 已经布局子视图： viewDidLayoutSubviews   =======\n");
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSLog(@"========   收到内存警告： didReceiveMemoryWarning   =======\n");
+//    NSLog(@"========   收到内存警告： didReceiveMemoryWarning   =======\n");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"========    HomeViewController 视图将要出现： viewWillAppear:(BOOL)animated   =======\n");
+//    NSLog(@"========    HomeViewController 视图将要出现： viewWillAppear:(BOOL)animated   =======\n");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"========    HomeViewController 视图已经出现： viewDidAppear:(BOOL)animated   =======\n");
+//    NSLog(@"========    HomeViewController 视图已经出现： viewDidAppear:(BOOL)animated   =======\n");
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSLog(@"========    HomeViewController 视图将要消失： viewWillDisappear:(BOOL)animated   =======\n");
+//    NSLog(@"========    HomeViewController 视图将要消失： viewWillDisappear:(BOOL)animated   =======\n");
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    NSLog(@"========    HomeViewController 视图已经消失： viewDidDisappear:(BOOL)animated   =======\n");
+//    NSLog(@"========    HomeViewController 视图已经消失： viewDidDisappear:(BOOL)animated   =======\n");
 }
 
 - (void)dealloc {
-    NSLog(@"========   HomeViewController  释放： dealloc   =======\n");
+//    NSLog(@"========   HomeViewController  释放： dealloc   =======\n");
 }
 
 

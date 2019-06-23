@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MBSHomeViewController.h"
+#import "CategoryPageViewController.h"
 
 
 @interface AppDelegate ()
@@ -39,13 +40,12 @@
 
     
     //子控制器-2
-    UIViewController *mbsVC1 = [[UIViewController alloc] init];
-    mbsVC1.view.backgroundColor = [UIColor greenColor];
-    mbsVC1.tabBarItem.title = @"Home";
-    mbsVC1.tabBarItem.image = [[UIImage imageNamed:@"Home_normal"]
-                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    mbsVC1.tabBarItem.selectedImage = [[UIImage imageNamed:@"Home_selected"]
-                                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //分类页
+    CategoryPageViewController  *mbsCategoryPageVC = [[CategoryPageViewController alloc] init];
+    [mbsCategoryPageVC.navigationItem setTitle:@"Category"];
+    
+    UINavigationController * navController2 = [[UINavigationController alloc] initWithRootViewController:mbsCategoryPageVC];
+
     //子控制器-3
     UIViewController *mbsVC2 = [[UIViewController alloc] init];
     mbsVC2.view.backgroundColor = [UIColor blueColor];
@@ -59,7 +59,7 @@
    
     
     // 将子控制器添加到 UITabBarController
-    mbsTabBarController.viewControllers = @[navController1,mbsVC1,mbsVC2];
+    mbsTabBarController.viewControllers = @[navController1,navController2,mbsVC2];
     
     
     [self.window makeKeyAndVisible];
