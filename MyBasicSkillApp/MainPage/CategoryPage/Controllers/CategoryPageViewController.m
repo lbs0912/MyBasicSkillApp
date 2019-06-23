@@ -123,12 +123,34 @@
     
     //由于此方法调用十分频繁，cell的标示声明成静态变量有利于性能优化
     static NSString *cellIdentifier=@"UITableViewCellIdentifierKey1";
+    static NSString *cellIdentifierForFirstRow=@"UITableViewCellIdentifierKeyWithSwitch";
     //首先根据标识去缓存池取
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    //如果缓存池没有到则重新创建并放到缓存池中
-    if(!cell){
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    UITableViewCell *cell;
+    
+    if (indexPath.row==0) {
+        cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierForFirstRow];
+    }else{
+        cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
+    //如果缓存池没有取到则重新创建并放到缓存池中
+    if(!cell){
+        if (indexPath.row==0) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifierForFirstRow];
+            UISwitch *sw=[[UISwitch alloc]init];
+            [sw addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView=sw; // 设置tableViewCell 的 accessoryView 属性
+            
+        }else{
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            cell.accessoryType=UITableViewCellAccessoryDetailButton;  // 设置tableViewCell 的 accessoryType
+        }
+    }
+    
+    if(indexPath.row==0){
+        ((UISwitch *)cell.accessoryView).tag=indexPath.section; // 设置tab 用于点击识别
+    }
+    
+    
     
     cell.textLabel.text=[contact getName];
     cell.detailTextLabel.text=contact.phoneNumber;
@@ -225,6 +247,12 @@
         NSArray *indexPaths=@[_selectedIndexPath];//需要局部刷新的单元格的组、行
         [_tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationLeft];//后面的参数代表更新时的动画
     }
+}
+
+
+#pragma mark 切换开关转化事件
+-(void)switchValueChange:(UISwitch *)sw{
+    NSLog(@"section:%ld,switch:%ld",sw.tag, sw.on);
 }
 
 @end
