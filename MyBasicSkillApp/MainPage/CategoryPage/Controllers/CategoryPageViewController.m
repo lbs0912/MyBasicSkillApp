@@ -48,13 +48,14 @@
 
 #pragma mark 加载数据
 -(void)initData{
-    _contacts=[[NSMutableArray alloc]init];
+    _contacts=[[NSMutableArray alloc]init]; //联系人模型
+    
+    // _contacts 是一个二维数组
     
     MBSContact *contact1=[MBSContact initWithFirstName:@"Cui" andLastName:@"Kenshin" andPhoneNumber:@"18500131234"];
     MBSContact *contact2=[MBSContact initWithFirstName:@"Cui" andLastName:@"Tom" andPhoneNumber:@"18500131237"];
     MBSContactGroup *group1=[MBSContactGroup initWithName:@"C" andDetail:@"With names beginning with C" andContacts:[NSMutableArray arrayWithObjects:contact1,contact2, nil]];
     [_contacts addObject:group1];
-    
     
     
     MBSContact *contact3=[MBSContact initWithFirstName:@"Lee" andLastName:@"Terry" andPhoneNumber:@"18500131238"];
@@ -64,13 +65,11 @@
     [_contacts addObject:group2];
     
     
-    
     MBSContact *contact6=[MBSContact initWithFirstName:@"Sun" andLastName:@"Kaoru" andPhoneNumber:@"18500131235"];
     MBSContact *contact7=[MBSContact initWithFirstName:@"Sun" andLastName:@"Rosa" andPhoneNumber:@"18500131236"];
     
     MBSContactGroup *group3=[MBSContactGroup initWithName:@"S" andDetail:@"With names beginning with S" andContacts:[NSMutableArray arrayWithObjects:contact6,contact7, nil]];
     [_contacts addObject:group3];
-    
     
     MBSContact *contact8=[MBSContact initWithFirstName:@"Wang" andLastName:@"Stephone" andPhoneNumber:@"18500131241"];
     MBSContact *contact9=[MBSContact initWithFirstName:@"Wang" andLastName:@"Lucy" andPhoneNumber:@"18500131242"];
@@ -90,20 +89,16 @@
 }
 
 #pragma mark - 数据源方法
-#pragma mark 返回分组数
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSLog(@"计算分组数");
-    return _contacts.count;
-}
 
-#pragma mark 返回每组行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+#pragma mark 返回每组行数 必须实现的方法 （每个节中的行数）
+-(NSInteger)tableView:(UITableView *)tableView  numberOfRowsInSection:(NSInteger)section{
     NSLog(@"计算每组(组%ld)行数",section);
     MBSContactGroup *group1=_contacts[section];
     return group1.contacts.count;
 }
 
-#pragma mark返回每行的单元格
+#pragma mark返回每行的单元格 必须实现的方法
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //NSIndexPath是一个结构体，记录了组和行信息
     NSLog(@"生成单元格(组：%ld,行%ld)",indexPath.section,indexPath.row);
@@ -114,6 +109,14 @@
     cell.detailTextLabel.text=contact.phoneNumber;
     return cell;
 }
+
+#pragma mark 返回分组数
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    NSLog(@"计算分组数");
+    return _contacts.count;
+}
+
+
 
 #pragma mark 返回每组头标题名称
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -127,5 +130,16 @@
     NSLog(@"生成尾部（组%ld）详情",section);
     MBSContactGroup *group=_contacts[section];
     return group.detail;
+}
+
+
+#pragma mark 返回每组标题索引
+-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    NSLog(@"生成组索引");
+    NSMutableArray *indexs=[[NSMutableArray alloc]init];
+    for(MBSContactGroup *group in _contacts){
+        [indexs addObject:group.name];
+    }
+    return indexs;
 }
 @end
