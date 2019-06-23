@@ -10,7 +10,7 @@
 #import "MBSContact.h"
 #import "MBSContactGroup.h"
 
-@interface CategoryPageViewController () <UITableViewDataSource, UITableViewDelegate> {
+@interface CategoryPageViewController () <UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate> {
     UITableView *_tableView;
     NSMutableArray *_contacts; //联系人模型
     NSIndexPath *_selectedIndexPath;//当前选中的组和行
@@ -286,7 +286,7 @@
 
 #pragma mark 删除操作
 //实现了此方法向左滑动就会显示删除按钮
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     MBSContactGroup *group =_contacts[indexPath.section];
     MBSContact *contact=group.contacts[indexPath.row];
