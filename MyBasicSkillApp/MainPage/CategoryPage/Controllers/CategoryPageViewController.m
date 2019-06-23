@@ -10,9 +10,10 @@
 #import "MBSContact.h"
 #import "MBSContactGroup.h"
 
-@interface CategoryPageViewController () <UITableViewDataSource> {
+@interface CategoryPageViewController () <UITableViewDataSource, UITableViewDelegate> {
     UITableView *_tableView;
     NSMutableArray *_contacts; //联系人模型
+    NSIndexPath *_selectedIndexPath;//当前选中的组和行
 }
 
 @end
@@ -26,6 +27,8 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style: UITableViewStyleGrouped];
     //设置数据源
     _tableView.dataSource = self;
+    //设置委托协议
+    _tableView.delegate = self;
     
     [self.view addSubview:_tableView];
     
@@ -99,16 +102,41 @@
 }
 
 #pragma mark返回每行的单元格 必须实现的方法
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    //NSIndexPath是一个结构体，记录了组和行信息
+//    NSLog(@"生成单元格(组：%ld,行%ld)",indexPath.section,indexPath.row);
+//    MBSContactGroup *group=_contacts[indexPath.section];
+//    MBSContact *contact=group.contacts[indexPath.row];
+//    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+//    cell.textLabel.text=[contact getName];
+//    cell.detailTextLabel.text=contact.phoneNumber;
+//    return cell;
+//}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //NSIndexPath是一个结构体，记录了组和行信息
     NSLog(@"生成单元格(组：%ld,行%ld)",indexPath.section,indexPath.row);
     MBSContactGroup *group=_contacts[indexPath.section];
     MBSContact *contact=group.contacts[indexPath.row];
-    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+//    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    //由于此方法调用十分频繁，cell的标示声明成静态变量有利于性能优化
+    static NSString *cellIdentifier=@"UITableViewCellIdentifierKey1";
+    //首先根据标识去缓存池取
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    //如果缓存池没有到则重新创建并放到缓存池中
+    if(!cell){
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    
     cell.textLabel.text=[contact getName];
     cell.detailTextLabel.text=contact.phoneNumber;
+    
+    NSLog(@"cell:%@",cell); //查看cell复用
     return cell;
 }
+
 
 #pragma mark 返回分组数
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -142,4 +170,61 @@
     }
     return indexs;
 }
+
+#pragma mark - 代理方法
+// 不要忘记设置委托协议   _tableView.delegate = self;
+#pragma mark 设置分组标题内容高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section==0){
+        return 50; //第1个表头
+    }
+    return 40;
+}
+
+#pragma mark 设置每行高度（每行高度可以不一样）
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 45;
+}
+
+#pragma mark 设置尾部说明内容高度
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 40;
+}
+
+
+#pragma mark 点击行
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _selectedIndexPath = indexPath;
+    MBSContactGroup *group=_contacts[indexPath.section];
+    MBSContact *contact=group.contacts[indexPath.row];
+    //创建弹出窗口
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"System Info" message:[contact getName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle=UIAlertViewStylePlainTextInput; //设置窗口内容样式
+    UITextField *textField= [alert textFieldAtIndex:0]; //取得文本框
+    textField.text=contact.phoneNumber; //设置文本框内容
+    [alert show]; //显示窗口
+}
+
+
+
+#pragma mark 重写状态样式方法
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
+#pragma mark 窗口的代理方法，用户保存数据
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //当点击了第二个按钮（OK）
+    if (buttonIndex==1) {
+        UITextField *textField= [alertView textFieldAtIndex:0];
+        //修改模型数据
+        MBSContactGroup *group=_contacts[_selectedIndexPath.section];
+        MBSContact *contact=group.contacts[_selectedIndexPath.row];
+        contact.phoneNumber=textField.text;
+        //刷新表格
+        NSArray *indexPaths=@[_selectedIndexPath];//需要局部刷新的单元格的组、行
+        [_tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationLeft];//后面的参数代表更新时的动画
+    }
+}
+
 @end
