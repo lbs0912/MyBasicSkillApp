@@ -42,7 +42,7 @@
     //子控制器-2
     //分类页
     CategoryPageViewController  *mbsCategoryPageVC = [[CategoryPageViewController alloc] init];
-    [mbsCategoryPageVC.navigationItem setTitle:@"Category"];
+//    [mbsCategoryPageVC.navigationItem setTitle:@"Category"];
     
     UINavigationController * navController2 = [[UINavigationController alloc] initWithRootViewController:mbsCategoryPageVC];
 

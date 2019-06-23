@@ -14,6 +14,9 @@
     UITableView *_tableView;
     NSMutableArray *_contacts; //联系人模型
     NSIndexPath *_selectedIndexPath;//当前选中的组和行
+    
+    //判断当前处于的状态
+    BOOL *_isInsert;
 }
 
 @end
@@ -42,6 +45,17 @@
         // 为该控制器设置标签项
         self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMostViewed tag:2];
         self.tabBarItem.badgeValue = @"9";
+        [self.navigationItem setTitle:@"TableView"];
+        
+        UIBarButtonItem *removeButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                 target:self
+                                 action:@selector(removeBtn)];
+        UIBarButtonItem *addButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                 target:self
+                                 action:@selector(addBtn)];
+        [self.navigationItem setLeftBarButtonItem:removeButton];
+        [self.navigationItem setRightBarButtonItem:addButton];
+       
         
     }
     return self;
@@ -252,7 +266,76 @@
 
 #pragma mark 切换开关转化事件
 -(void)switchValueChange:(UISwitch *)sw{
-    NSLog(@"section:%ld,switch:%ld",sw.tag, sw.on);
+    NSLog(@"section:%ld,switch:%l",sw.tag, sw.on);
 }
 
+
+#pragma mark - 导航栏按钮
+- (void) removeBtn {
+    //直接通过下面的方法设置编辑状态没有动画
+    //_tableView.editing=!_tableView.isEditing;
+     _isInsert = NO;
+    [_tableView setEditing:!_tableView.isEditing animated:true];
+}
+
+- (void) addBtn {
+    _isInsert = YES;
+    [_tableView setEditing:!_tableView.isEditing animated:true];
+}
+
+
+#pragma mark 删除操作
+//实现了此方法向左滑动就会显示删除按钮
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MBSContactGroup *group =_contacts[indexPath.section];
+    MBSContact *contact=group.contacts[indexPath.row];
+    if (editingStyle==UITableViewCellEditingStyleDelete) {
+        [group.contacts removeObject:contact];
+        //考虑到性能这里不建议使用reloadData
+        //[tableView reloadData];
+        //使用下面的方法既可以局部刷新又有动画效果
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        
+        //如果当前组中没有数据则移除组刷新整个表格
+        if (group.contacts.count==0) {
+            [_contacts removeObject:group];
+            [tableView reloadData];
+        }
+    }else if(editingStyle==UITableViewCellEditingStyleInsert){
+        MBSContact *newContact=[[MBSContact alloc]init];
+        newContact.firstName=@"first";
+        newContact.lastName=@"last";
+        newContact.phoneNumber=@"12345678901";
+        [group.contacts insertObject:newContact atIndex:indexPath.row];
+        [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];//注意这里没有使用reladData刷新
+    }
+}
+
+
+#pragma mark 取得当前操作状态，根据不同的状态左侧出现不同的操作按钮
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (_isInsert) {
+        return UITableViewCellEditingStyleInsert;
+    }
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+#pragma mark 排序
+//只要实现这个方法在编辑状态右侧就有排序图标
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+    MBSContactGroup *sourceGroup =_contacts[sourceIndexPath.section];
+    MBSContact *sourceContact=sourceGroup.contacts[sourceIndexPath.row];
+    MBSContactGroup *destinationGroup =_contacts[destinationIndexPath.section];
+    
+    [sourceGroup.contacts removeObject:sourceContact];
+    if(sourceGroup.contacts.count==0){
+        [_contacts removeObject:sourceGroup];
+        [tableView reloadData];
+    }
+    
+    [destinationGroup.contacts insertObject:sourceContact atIndex:destinationIndexPath.row];
+    
+}
 @end
